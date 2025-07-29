@@ -15,7 +15,6 @@ const SingleProduct = () => {
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const [activeImg, setActiveImg] = useState("");
   const [qty, setQty] = useState(1);
 
@@ -46,17 +45,19 @@ const SingleProduct = () => {
     navigate("/cart");
   };
 
-  if (loading)
+  if (loading) {
     return <div className="text-center py-16 text-[#415D8A]">Loading…</div>;
-  if (!product)
-    return (
-      <div className="text-center py-16 text-red-600">Product not found.</div>
-    );
-        
+  }
+
+  if (!product) {
+    return <div className="text-center py-16 text-red-600">Product not found.</div>;
+  }
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
       <div className="flex flex-col lg:flex-row gap-10">
-<div className="flex gap-4">
+        {/* Thumbnail & Main Image */}
+        <div className="flex gap-4">
           <div className="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-visible">
             {product.images.map((img, i) => {
               const src = `${import.meta.env.VITE_API_BASE_URL}${img}`;
@@ -64,7 +65,7 @@ const SingleProduct = () => {
                 <img
                   key={i}
                   src={src}
-                  alt="thumb"
+                  alt={`Thumbnail ${i + 1}`}
                   onMouseEnter={() => setActiveImg(src)}
                   onClick={() => setActiveImg(src)}
                   className={`w-20 h-24 object-cover rounded-md cursor-pointer border ${
@@ -81,13 +82,19 @@ const SingleProduct = () => {
               src={activeImg}
               alt={product.name}
               className="w-full h-full object-cover rounded-md shadow-sm transition-all duration-300"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "https://via.placeholder.com/600";
+              }}
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
+
+        {/* Product Info */}
         <div className="flex-1 space-y-6">
-          <h1 className="text-2xl md:text-3xl font-semibold text-[#2c2c2c]">
-            {product.name}
-          </h1>
+          <h1 className="text-2xl md:text-3xl font-semibold text-[#2c2c2c]">{product.name}</h1>
 
           <p className="text-lg font-bold text-green-700">
             ₹{product.price.toLocaleString("en-IN")}.00
@@ -102,25 +109,23 @@ const SingleProduct = () => {
           <button
             onClick={() => toggleWishlist(product._id)}
             className="flex items-center gap-2 text-sm font-medium text-[#415D8A] hover:underline"
+            aria-label="Add to Wishlist"
           >
-            <FaHeart
-              className={`${
-                isWishlisted ? "text-red-500" : "text-gray-400"
-              } transition`}
-            />
+            <FaHeart className={`${isWishlisted ? "text-red-500" : "text-gray-400"} transition`} />
             {isWishlisted ? "Wishlisted" : "Add to Wishlist"}
           </button>
 
+          {/* Quantity + Actions */}
           <div className="flex flex-col gap-5 mt-6">
+            {/* Quantity Selector */}
             <div className="flex items-center gap-4">
-              <label className="text-sm font-medium text-gray-700">
-                Quantity:
-              </label>
+              <label className="text-sm font-medium text-gray-700">Quantity:</label>
               <div className="flex items-center border border-[#ABBCDA] rounded-md overflow-hidden w-[120px]">
                 <button
                   onClick={dec}
                   className="w-8 h-8 flex items-center justify-center bg-[#D0E1F5] hover:bg-[#ABBCDA] text-[#415D8A] disabled:opacity-40 transition"
                   disabled={qty === 1}
+                  aria-label="Decrease quantity"
                 >
                   <FaMinus size={12} />
                 </button>
@@ -131,11 +136,14 @@ const SingleProduct = () => {
                   onClick={inc}
                   className="w-8 h-8 flex items-center justify-center bg-[#D0E1F5] hover:bg-[#ABBCDA] text-[#415D8A] disabled:opacity-40 transition"
                   disabled={qty === 10}
+                  aria-label="Increase quantity"
                 >
                   <FaPlus size={12} />
                 </button>
               </div>
             </div>
+
+            {/* Add to Cart + Buy Now */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-lg">
               <button
                 onClick={handleAddToCart}
@@ -153,6 +161,8 @@ const SingleProduct = () => {
                 Buy It Now
               </button>
             </div>
+
+            {/* WhatsApp Order Button */}
             <div className="w-full max-w-lg">
               <WhatsAppOrderButton product={product} />
             </div>
