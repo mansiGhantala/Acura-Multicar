@@ -34,7 +34,7 @@ const Cart = () => {
       clearCart();
       navigate("/my-orders");
     } catch (err) {
-      console.error(" Order error:", err);
+      // console.error(" Order error:", err);
       setMessage(" Failed to place order. Try again.");
     } finally {
       setLoading(false);

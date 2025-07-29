@@ -56,16 +56,24 @@ const ProductForm = () => {
     })),
   ];
 
-  const handleAddPhotos = (incoming) => {
-    const selected = Array.from(incoming).filter((f) => f.type.startsWith("image/"));
-    const total = serverPhotos.length + files.length + selected.length;
-    if (total > MAX_PHOTOS) {
-      setError(` Max ${MAX_PHOTOS} images allowed. Remove some photos first.`);
-      return;
-    }
-    setError("");
-    setFiles((prev) => [...prev, ...selected]);
-  };
+ const handleAddPhotos = (incoming) => {
+  const selected = Array.from(incoming).filter(
+    (f) =>
+      f.type === "image/jpeg" ||
+      f.type === "image/png" ||
+      f.type === "image/webp" ||
+      f.type === "image/jpg"
+  );
+
+  const total = serverPhotos.length + files.length + selected.length;
+  if (total > MAX_PHOTOS) {
+    setError(` Max ${MAX_PHOTOS} images allowed. Remove some photos first.`);
+    return;
+  }
+
+  setError("");
+  setFiles((prev) => [...prev, ...selected]);
+};
 
   const handleRemovePhoto = (index) => {
     const photo = previews[index];
@@ -102,7 +110,7 @@ const ProductForm = () => {
       }
       navigate("/admin/products");
     } catch (err) {
-      console.error(" Submit failed:", err);
+      // console.error(" Submit failed:", err);
       setError(err?.response?.data?.msg || "Submission failed. Try again.");
     } finally {
       setLoading(false);

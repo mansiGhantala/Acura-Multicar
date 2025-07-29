@@ -29,7 +29,7 @@ const SingleProduct = () => {
             : "https://via.placeholder.com/600"
         );
       } catch (err) {
-        console.error("Failed to load product", err);
+        // console.error("Failed to load product", err);
       } finally {
         setLoading(false);
       }

@@ -15,7 +15,7 @@ const AdminContacts = () => {
         const { data } = await api.get("/admin/messages");
         setContacts(data);
       } catch (error) {
-        console.error("Failed to fetch contacts", error);
+        // console.error("Failed to fetch contacts", error);
       } finally {
         setLoading(false);
       }
@@ -30,7 +30,7 @@ const AdminContacts = () => {
       setSuccessMessage(`Deleted contact from "${username}".`);
       setTimeout(() => setSuccessMessage(""), 3000);
     } catch (error) {
-      console.error("Delete failed", error);
+      // console.error("Delete failed", error);
     }
   };
 
@@ -41,7 +41,7 @@ const AdminContacts = () => {
         prev.map((c) => (c._id === id ? { ...c, isRead: true } : c))
       );
     } catch (error) {
-      console.error("Failed to mark as read", error);
+      // console.error("Failed to mark as read", error);
     }
   };
 

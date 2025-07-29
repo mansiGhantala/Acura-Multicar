@@ -21,7 +21,7 @@ export const OrderProvider = ({ children }) => {
       const { data } = await api.get("/orders/mine"); 
       setOrders(data);
     } catch (err) {
-      console.error("Failed to fetch orders:", err);
+      // console.error("Failed to fetch orders:", err);
       setError(err.response?.data?.message || "Failed to fetch orders");
     } finally {
       setLoading(false);
@@ -37,7 +37,7 @@ export const OrderProvider = ({ children }) => {
       }
       return { success: true, data };
     } catch (err) {
-      console.error("Order placement failed:", err);
+      // console.error("Order placement failed:", err);
       return {
         success: false,
         error: err.response?.data?.message || "Order failed",
@@ -58,7 +58,7 @@ export const OrderProvider = ({ children }) => {
 
       return { success: true, data };
     } catch (err) {
-      console.error("Cancel order failed:", err);
+      // console.error("Cancel order failed:", err);
       return {
         success: false,
         error: err.response?.data?.message || "Cancel failed",

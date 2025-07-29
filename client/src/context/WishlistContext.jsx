@@ -21,7 +21,7 @@ export const WishlistProvider = ({ children }) => {
         setWishlistItems(data?.wishlist || []);
         setWishlistCount(data?.count || ids.length);
       } catch (err) {
-        console.error("❌ Failed to fetch wishlist:", err);
+        // console.error("❌ Failed to fetch wishlist:", err);
       }
     } else {
       const stored = localStorage.getItem("wishlist");
@@ -64,7 +64,7 @@ export const WishlistProvider = ({ children }) => {
           setWishlistCount(data?.count || ids.length);
         }
       } catch (err) {
-        console.error(" Wishlist toggle failed:", err);
+        // console.error(" Wishlist toggle failed:", err);
       }
     } else {
       const exists = wishlist.includes(productId);

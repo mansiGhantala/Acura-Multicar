@@ -21,7 +21,7 @@ const Products = () => {
         const { data } = await api.get("/products");
         setProducts(data || []);
       } catch (err) {
-        console.error(err);
+        // console.error(err);
         setError(" Failed to load products. Please try again later.");
       } finally {
         setLoading(false);

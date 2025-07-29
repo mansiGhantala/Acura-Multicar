@@ -18,7 +18,7 @@ export const CartProvider = ({ children }) => {
       const { data } = await api.get("/cart");
       setCart(data.items || []);
     } catch (err) {
-      console.error(" Failed to fetch cart:", err);
+      // console.error(" Failed to fetch cart:", err);
       setError("Failed to fetch cart");
     } finally {
       setLoading(false);
@@ -31,7 +31,7 @@ export const CartProvider = ({ children }) => {
       const { data } = await api.post("/cart", { productId, quantity });
       setCart(data.items || []);
     } catch (err) {
-      console.error(" Failed to add to cart:", err);
+      // console.error(" Failed to add to cart:", err);
     }
   };
 
@@ -40,7 +40,7 @@ export const CartProvider = ({ children }) => {
       const { data } = await api.delete(`/cart/${productId}`);
       setCart(data.items || []);
     } catch (err) {
-      console.error("Failed to remove from cart:", err);
+      // console.error("Failed to remove from cart:", err);
     }
   };
 
@@ -49,7 +49,7 @@ export const CartProvider = ({ children }) => {
       await api.delete("/cart");
       setCart([]);
     } catch (err) {
-      console.error(" Failed to clear cart:", err);
+      // console.error(" Failed to clear cart:", err);
     }
   };
 

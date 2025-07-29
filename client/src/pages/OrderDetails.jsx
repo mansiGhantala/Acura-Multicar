@@ -20,7 +20,7 @@ const OrderDetails = () => {
         const res = await api.get(`/orders/${id}`);
         setOrder(res.data);
       } catch (err) {
-        console.error("Failed to fetch order:", err);
+        // console.error("Failed to fetch order:", err);
       } finally {
         setLoading(false);
       }

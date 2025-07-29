@@ -46,7 +46,7 @@ const Contact = ({ isLoggedIn = false, defaultName = '', defaultEmail = '', defa
     form.current.reset();
   } catch (error) {
     setGlobalMessage({ type: 'error', text: ' Failed to send message. Please try again.' });
-    console.error(error?.response?.data || error.message);
+    // console.error(error?.response?.data || error.message);
   } finally {
     setLoading(false);
     setTimeout(() => {

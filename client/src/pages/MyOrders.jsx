@@ -12,7 +12,7 @@ const MyOrders = () => {
         const res = await api.get("/orders/mine");
         setOrders(res.data);
       } catch (err) {
-        console.error("Failed to fetch orders:", err);
+        // console.error("Failed to fetch orders:", err);
       } finally {
         setLoading(false);
       }

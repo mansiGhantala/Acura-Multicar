@@ -19,7 +19,7 @@ const AdminOrders = () => {
       const res = await api.get("/admin/orders");
       setOrders(res.data);
     } catch (err) {
-      console.error("Fetch orders error:", err);
+      // console.error("Fetch orders error:", err);
       setGlobalMessage({ text: "Failed to load orders.", type: "error" });
     }
   };
@@ -34,7 +34,7 @@ const AdminOrders = () => {
       );
       setGlobalMessage({ text: "Order status updated.", type: "success" });
     } catch (err) {
-      console.error("Status update error:", err);
+      // console.error("Status update error:", err);
       setGlobalMessage({ text: "Failed to update status.", type: "error" });
     }
   };
@@ -47,7 +47,7 @@ const AdminOrders = () => {
       setRecentlyDeleted(deletedOrder);
       setGlobalMessage({ text: "Order deleted successfully.", type: "success" });
     } catch (err) {
-      console.error("Delete order error:", err);
+      // console.error("Delete order error:", err);
       setGlobalMessage({ text: "Failed to delete order.", type: "error" });
     }
   };
@@ -60,7 +60,7 @@ const AdminOrders = () => {
       setRecentlyDeleted(null);
       setGlobalMessage({ text: "Order restored.", type: "success" });
     } catch (err) {
-      console.error("Undo delete error:", err);
+      // console.error("Undo delete error:", err);
       setGlobalMessage({ text: "Failed to restore order.", type: "error" });
     }
   };

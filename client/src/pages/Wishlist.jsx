@@ -20,7 +20,7 @@ const Wishlist = () => {
         const filtered = data.filter((p) => wishlist.includes(p._id));
         setProducts(filtered);
       } catch (err) {
-        console.error("Failed to fetch wishlist:", err);
+        // console.error("Failed to fetch wishlist:", err);
       } finally {
         setLoading(false);
       }

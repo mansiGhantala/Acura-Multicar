@@ -13,7 +13,7 @@ const Home = () => {
         const { data } = await api.get("/products");
         setProducts(data);
       } catch (error) {
-        console.error("Failed to load products:", error);
+        // console.error("Failed to load products:", error);
       }
     })();
   }, []);

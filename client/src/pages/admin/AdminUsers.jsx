@@ -11,7 +11,7 @@ const AdminUsers = () => {
       const { data } = await api.get("/admin/users");
       setUsers(data);
     } catch (error) {
-      console.error("Failed to fetch users", error);
+      // console.error("Failed to fetch users", error);
     } finally {
       setLoading(false);
     }
@@ -32,7 +32,7 @@ const AdminUsers = () => {
       );
       setConfirmUser(null);
     } catch (error) {
-      console.error("Failed to update role", error);
+      // console.error("Failed to update role", error);
     }
   };
 
